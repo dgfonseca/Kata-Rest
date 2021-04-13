@@ -9,8 +9,8 @@ import json
 # Create your views here.
 @csrf_exempt
 def index(request):
-    images_list = Image.objects.all()
-    return HttpResponse(serializers.serialize("json", images_list))
+   # images_list = Image.objects.all()
+    return HttpResponse(serializers.serialize("json", ))
 
 @csrf_exempt
 def add_user_view(request):

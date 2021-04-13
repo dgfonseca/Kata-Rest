@@ -19,6 +19,6 @@ class GalleryTestCase(TestCase):
         Image.objects.create(name='nuevo2', url='No', description='testImage', type='jpg', user=user_model)
         response = self.client.get('/gallery/')
         current_data = json.loads(response.content)
-        self.assertEqual(current_data, 2)
+        self.assertEqual(len(current_data), 2)
 
 

@@ -28,3 +28,10 @@ class GalleryTestCase(TestCase):
         current_data = json.loads(response.content)
         self.assertEqual(current_data[0]['fields']['username'], 'testUser')
 
+    def test_portafolio_persona(self):
+        user_model = User.objects.create_user(username='test', password='kd8wke-DE34', first_name='test',
+                                              last_name='test', email='test@test.com')
+        Image.objects.create(name='nuevo', url='No', description='testImage', type='jpg', user=user_model)
+        image_list = self.client.get('/gallery/image/1')
+        self.assertEqual(image_list.status_code, 200)
+

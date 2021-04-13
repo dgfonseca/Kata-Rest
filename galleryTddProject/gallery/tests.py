@@ -5,10 +5,10 @@ from django.test import TestCase, Client
 from .models import Image
 import json
 
+
 # Create your tests here.
 class GalleryTestCase(TestCase):
 
-    def test_lista_portafolios_existentes(self):
-        image_list = self.client.get('/gallery/', format='json')
-        self.assertEqual(image_list.status_code, 200)
-
+    def index(request):
+        images_list = Image.objects.all()
+        return HttpResponse(serializers.serialize("json", images_list))

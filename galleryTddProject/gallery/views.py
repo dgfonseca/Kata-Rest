@@ -1,10 +1,12 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from .models import Image
 import json
+from django.contrib.auth import authenticate, login
+
 
 # Create your views here.
 @csrf_exempt
@@ -33,4 +35,6 @@ def add_user_view(request):
 def get_user_image(request, params):
     images_list = Image.objects.filter(user=params)
     return HttpResponse(serializers.serialize("json", images_list))
+
+
 

@@ -29,5 +29,8 @@ def add_user_view(request):
         user_model.save()
     return HttpResponse(serializers.serialize("json", [user_model]))
 
-
+@csrf_exempt
+def get_user_image(request, params):
+    images_list = Image.objects.filter(user=params)
+    return HttpResponse(serializers.serialize("json", images_list))
 

@@ -12,3 +12,4 @@ class GalleryTestCase(TestCase):
         image_list = self.client.get('/gallery/', format='json')
         self.assertEqual(image_list.status_code, 200)
 
+

@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'dbgallerytdd',
-        'USER': 'usdbgallery',
-        'PASSWORD': 'Abcd123#',
+        'USER': 'postgres',
+        'PASSWORD': 'santafe',
         'HOST': 'localhost',
         'PORT': '',
     }

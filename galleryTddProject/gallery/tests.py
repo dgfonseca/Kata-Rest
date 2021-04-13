@@ -12,4 +12,13 @@ class GalleryTestCase(TestCase):
         image_list = self.client.get('/gallery/', format='json')
         self.assertEqual(image_list.status_code, 200)
 
+    def test_contar_portafolio(self):
+        user_model = User.objects.create_user(username='test', password='kd8wke-DE34', first_name='test',
+                                              last_name='test', email='test@test.com')
+        Image.objects.create(name='nuevo', url='No', description='testImage', type='jpg', user=user_model)
+        Image.objects.create(name='nuevo2', url='No', description='testImage', type='jpg', user=user_model)
+        response = self.client.get('/gallery/')
+        current_data = json.loads(response.content)
+        self.assertEqual(current_data, 2)
+
 

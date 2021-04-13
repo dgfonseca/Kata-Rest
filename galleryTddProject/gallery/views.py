@@ -37,4 +37,18 @@ def get_user_image(request, params):
     return HttpResponse(serializers.serialize("json", images_list))
 
 
+@csrf_exempt
+def login_view(request):
+    if request.method == 'POST':
+        jsonUser = json.loads(request.body)
+        username = jsonUser['username']
+        password = jsonUser['password']
+        user =  authenticate(username=username, password=password)
+        if user is not None:
+            login(request,user)
+            message = "Ok"
+        else:
+            message = "Nombre de usuario o contrasena incorrecto"
+    return JsonResponse({"message":message})
+
 

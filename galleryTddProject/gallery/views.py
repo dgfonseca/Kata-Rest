@@ -51,7 +51,23 @@ def login_view(request):
             message = "Nombre de usuario o contrasena incorrecto"
     return JsonResponse({"message":message})
 
+def put_user(request, params):
+    if request.method == 'PUT':
+        json_user = json.loads(request.body)
+        username = json_user['username']
+        first_name = json_user['first_name']
+        last_name = json_user['last_name']
+        password = json_user['password']
+        email = json_user['email']
 
+        user_model = User.objects.get(username=params)
+        user_model.username = username
+        user_model.password = password
+        user_model.first_name = first_name
+        user_model.last_name = last_name
+        user_model.email = email
+        user_model.save()
+    return HttpResponse(serializers.serialize("json", [user_model]))
 
 
 
